@@ -25,14 +25,25 @@ function Editor() {
         return () => clearTimeout(timeout)
     }, [html, css, js])
   return (
-    <div>
-    <div>
-      <textarea value={html} type="text" onChange={(e)=> {setHtml(e.target.value)}} />
+    <div className='wrapper'>
+    <div className='header'></div>
+    <div className='input-cover'>
+      <textarea value={html} type="text" placeholder='HTML' onChange={(e)=> {setHtml(e.target.value)}} />
 
-      <textarea value={css} type="text" onChange={(e)=> {setCss(e.target.value)}} />
-      <textarea value={js} type="text" onChange={(e)=> {setJs(e.target.value)}} />
+      <textarea value={css} type="text" placeholder='CSS' onChange={(e)=> {setCss(e.target.value)}} />
+      <textarea value={js} type="text" placeholder='JS' onChange={(e)=> {setJs(e.target.value)}} />
     </div>
-    {codepenCode}
+    <div>
+        <iframe 
+        srcDoc={codepenCode} 
+        frameborder="0"
+        title='output'
+        width="100%"
+        height="100%"
+        >
+
+        </iframe>
+    </div>
     </div>
   )
 }
