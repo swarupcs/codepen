@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import img from "./codepen_logo.png"; 
+import "./index.css"
 
 function Editor() {
     const [html, setHtml] = useState("");
@@ -26,7 +28,10 @@ function Editor() {
     }, [html, css, js])
   return (
     <div className='wrapper'>
-    <div className='header'></div>
+    <div className='header'>
+        <img src={img} alt="" />
+        <span>Codepen</span>
+    </div>
     <div className='input-cover'>
       <textarea value={html} type="text" placeholder='HTML' onChange={(e)=> {setHtml(e.target.value)}} />
 

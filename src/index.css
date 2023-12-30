@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.wrapper {
+  position: relative;
+}
+
+.header {
+  background-color: black;
+  color: white;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+span {
+  margin-left: 60px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  position: absolute;
+}
+ 
+img {
+  height: 5vh;
+  width: 5vh;
+  object-fit: cover;
+  position:absolute;
+} 
