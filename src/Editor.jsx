@@ -1,57 +1,59 @@
-import React, { useEffect, useState } from 'react'
-import img from "./codepen_logo.png"; 
-import "./index.css"
+import React, { useEffect, useState } from 'react';
+import logo from "./codepen_logo.png"
+import useLocalStorage from './storage';
 
-function Editor() {
-    const [html, setHtml] = useState("");
-    const [css, setCss] = useState("");
-    const [js, setJs] = useState("");
+const Editor = () => {
 
-    const [codepenCode, setCodepenCode] = useState("");
+    const [html, setHtml] = useLocalStorage('html', '');
+    const [css, setCss] = useLocalStorage('css', '');
+    const [js, setJs] = useLocalStorage('js', '');
+    const [codepenCode, setcodepenCode] = useState('')
 
-    useEffect(()=> {
-    // The useEffect hook is triggered when any of the dependencies (html, css, js) change.
 
-    // setTimeout is used to introduce a delay of 200 milliseconds before updating the state.
+    useEffect(() => {
         const timeout = setTimeout(() => {
-            setCodepenCode(`
+            setcodepenCode(`
             <html>
-            <style>${css}</style>
-            <script>${js}</script>
-            <body>${html}</body>
+              <style>${css}</style>
+              <body>${html}</body>
+              <script>${js}</script>
             </html>
-            `)
-        },200)
+          `)
+        }, 200)
 
-         // The return statement defines the cleanup function, which clears the timeout to avoid memory leaks.
         return () => clearTimeout(timeout)
     }, [html, css, js])
-  return (
-    <div className='wrapper'>
-    <div className='header'>
-        <img src={img} alt="" />
-        <span>Codepen</span>
-    </div>
-    <div className='input-cover'>
-      <textarea value={html} type="text" placeholder='HTML' className='input' onChange={(e)=> {setHtml(e.target.value)}} />
-    <div className='width'/>
-      <textarea value={css} type="text" placeholder='CSS' className='input' onChange={(e)=> {setCss(e.target.value)}} />
-      <div className='width'/> 
-      <textarea value={js} type="text" placeholder='JS' className='input' onChange={(e)=> {setJs(e.target.value)}} />
-    </div>
-    <div className='output'>
-        <iframe 
-        srcDoc={codepenCode} 
-        frameborder="0"
-        title='output'
-        width="100%"
-        height="100%"
-        >
 
-        </iframe>
-    </div>
-    </div>
-  )
+    return (
+        <div className='wrapper'>
+            <div className='header'>
+                <img src={logo} alt="" />
+                <span>Codepen</span>
+            </div>
+            <div className='input-cover'>
+                <textarea type="text" className='input' value={html} placeholder="HTML" onChange={(e) => setHtml(e.target.value)} autoComplete="off" />
+                <div className='width'></div>
+                
+               
+                <textarea type="text" className='input' value={css} placeholder="CSS" onChange={(e) => setCss(e.target.value)} autoComplete="off" />
+                <div className='width'></div>
+               
+                <textarea type="text" className='input' value={js} placeholder="JS" onChange={(e) => setJs(e.target.value)} autoComplete="off" />
+                <div className='width'></div>
+
+            </div>
+            <div className='output'>
+                <iframe
+                    srcDoc={codepenCode}
+                    title="output"
+                    sandbox="allow-scripts"
+                    frameBorder="0"
+                    width="100%"
+                    height="100%"
+                />
+            </div>
+        </div>
+    )
 }
 
 export default Editor
