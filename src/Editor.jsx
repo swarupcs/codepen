@@ -33,12 +33,13 @@ function Editor() {
         <span>Codepen</span>
     </div>
     <div className='input-cover'>
-      <textarea value={html} type="text" placeholder='HTML' onChange={(e)=> {setHtml(e.target.value)}} />
-
-      <textarea value={css} type="text" placeholder='CSS' onChange={(e)=> {setCss(e.target.value)}} />
-      <textarea value={js} type="text" placeholder='JS' onChange={(e)=> {setJs(e.target.value)}} />
+      <textarea value={html} type="text" placeholder='HTML' className='input' onChange={(e)=> {setHtml(e.target.value)}} />
+    <div className='width'/>
+      <textarea value={css} type="text" placeholder='CSS' className='input' onChange={(e)=> {setCss(e.target.value)}} />
+      <div className='width'/> 
+      <textarea value={js} type="text" placeholder='JS' className='input' onChange={(e)=> {setJs(e.target.value)}} />
     </div>
-    <div>
+    <div className='output'>
         <iframe 
         srcDoc={codepenCode} 
         frameborder="0"
